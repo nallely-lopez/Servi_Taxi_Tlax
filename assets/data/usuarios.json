@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "nombre": "Lizeth Nallely",
+    "usuario": "nallely",
+    "claveAcceso": "demo123"
+  },
+  {
+    "id": 2,
+    "nombre": "Abelardo",
+    "usuario": "abelardo",
+    "claveAcceso": "demo456"
+  }
+]
