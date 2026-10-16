@@ -1,0 +1,8 @@
+[
+  { "id": 1, "origenId": 1, "destinoId": 2, "distanciaKm": 3.5 },
+  { "id": 2, "origenId": 2, "destinoId": 1, "distanciaKm": 3.5 },
+  { "id": 3, "origenId": 1, "destinoId": 3, "distanciaKm": 1.8 },
+  { "id": 4, "origenId": 3, "destinoId": 1, "distanciaKm": 1.8 },
+  { "id": 5, "origenId": 1, "destinoId": 4, "distanciaKm": 5.2 }
+  
+]
