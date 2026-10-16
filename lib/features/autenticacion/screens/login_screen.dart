@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../servicios/screens/servicios_screen.dart';
 import '../models/usuario_model.dart';
 import '../utils/lector_usuarios_utils.dart';
@@ -61,7 +60,6 @@ class _LoginScreenState extends State<LoginScreen> {
       });
 
       if (usuarioEncontrado != null) {
-        // Conexión exitosa: Navega al catálogo de servicios pasando el usuario
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -69,7 +67,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         );
       } else {
-        // Validación 2: Credenciales incorrectas
         setState(() {
           _mensajeError = 'Usuario o contraseña incorrectos.';
         });

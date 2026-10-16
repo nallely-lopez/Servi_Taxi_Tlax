@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'features/autenticacion/screens/login_screen.dart';
 
 void main() {
@@ -9,9 +8,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: ' Demo', home: const LoginScreen());
+    return MaterialApp(
+      title: 'Transporte Local',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
+        useMaterial3: true,
+      ),
+      home: const LoginScreen(),
+    );
   }
 }
