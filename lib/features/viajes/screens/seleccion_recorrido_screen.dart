@@ -37,7 +37,8 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
     _futureRutas = LectorRutas.cargarRutas();
   }
 
-  void _validarYContinuar(List<Ruta> rutas) {
+  Future<void> _validarYContinuar(List<Ruta> rutas) async {
+    final context = this.context;
     if (_origenSeleccionado == null || _destinoSeleccionado == null) {
       _mostrarError('Por favor selecciona el lugar de origen y de destino.');
       return;
@@ -79,10 +80,12 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
     setState(() {
       _mensajeError = null;
     });
-    Navigator.push<void>(
+    final resultado = await Navigator.push<bool>(
       context,
       MaterialPageRoute(builder: (context) => CotizacionScreen(viaje: viaje)),
     );
+    if (!context.mounted) return;
+    if (resultado == true) Navigator.pop(context, true);
   }
 
   void _mostrarError(String mensaje) {

@@ -31,6 +31,13 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
       appBar: AppBar(
         title: const Text('Catálogo de Servicios'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.logout),
+            tooltip: 'Cerrar sesión',
+          ),
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
