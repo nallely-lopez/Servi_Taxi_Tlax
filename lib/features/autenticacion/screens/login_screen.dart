@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../../servicios/screens/servicios_screen.dart';
 import '../models/usuario_model.dart';
 import '../utils/lector_usuarios_utils.dart';
 
@@ -60,15 +60,13 @@ class _LoginScreenState extends State<LoginScreen> {
       });
 
       if (usuarioEncontrado != null) {
-        // En este paso, el catálogo aún no existe; documentamos acceso exitoso
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Bienvenido, ${usuarioEncontrado.nombre}'),
-            backgroundColor: Colors.green,
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ServiciosScreen(usuario: usuarioEncontrado),
           ),
         );
       } else {
-        // Validación 2: Credenciales incorrectas
         setState(() {
           _mensajeError = 'Usuario o contraseña incorrectos.';
         });
