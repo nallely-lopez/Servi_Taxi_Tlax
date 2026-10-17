@@ -40,7 +40,7 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
   Future<void> _validarYContinuar(List<Ruta> rutas) async {
     final context = this.context;
     if (_origenSeleccionado == null || _destinoSeleccionado == null) {
-      _mostrarError('Por favor selecciona el lugar de origen y de destino.');
+      _mensajeError = 'Error de ruta: Selecciona un destino diferente al lugar de origen.';
       return;
     }
 
