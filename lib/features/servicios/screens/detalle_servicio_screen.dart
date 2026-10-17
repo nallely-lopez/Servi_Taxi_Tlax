@@ -41,14 +41,16 @@ class DetalleServicioScreen extends StatelessWidget {
             const SizedBox(height: 24),
             BotonPrincipal(
               texto: 'Seleccionar Recorrido',
-              onPressed: () {
-                Navigator.push<void>(
+              onPressed: () async {
+                final resultado = await Navigator.push<bool>(
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
                         SeleccionRecorridoScreen(servicio: servicio),
                   ),
                 );
+                if (!context.mounted) return;
+                if (resultado == true) Navigator.pop(context, true);
               },
             ),
           ],

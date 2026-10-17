@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../shared/widgets/boton_principal_widget.dart';
+import 'confirmacion_screen.dart';
 import '../models/viaje.dart';
 import '../widgets/desglose_costo.dart';
 import '../widgets/resumen_recorrido.dart';
@@ -8,10 +9,7 @@ import '../widgets/resumen_recorrido.dart';
 class CotizacionScreen extends StatelessWidget {
   final Viaje viaje;
 
-  const CotizacionScreen({
-    super.key,
-    required this.viaje,
-  });
+  const CotizacionScreen({super.key, required this.viaje});
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +29,15 @@ class CotizacionScreen extends StatelessWidget {
             const SizedBox(height: 24),
             BotonPrincipal(
               texto: 'Confirmar Viaje',
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Viaje confirmado.')),
+              onPressed: () async {
+                final resultado = await Navigator.push<bool>(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ConfirmacionScreen(viaje: viaje),
+                  ),
                 );
+                if (!context.mounted) return;
+                if (resultado == true) Navigator.pop(context, true);
               },
             ),
             const SizedBox(height: 8),
