@@ -39,8 +39,13 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
 
   Future<void> _validarYContinuar(List<Ruta> rutas) async {
     final context = this.context;
-    if (_origenSeleccionado == null || _destinoSeleccionado == null) {
-      _mensajeError = 'Error de ruta: Selecciona un destino diferente al lugar de origen.';
+
+    // Validación 2: Origen igual a destino
+    if (_origenSeleccionado!.id == _destinoSeleccionado!.id) {
+      setState(() {
+        _mensajeError =
+            'Atención: El punto de salida y de llegada no pueden coincidir.';
+      });
       return;
     }
 
