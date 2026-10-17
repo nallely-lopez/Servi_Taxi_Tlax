@@ -5,6 +5,7 @@ import '../models/servicio_transporte_model.dart';
 import '../utils/lector_servicios_utils.dart';
 import '../widgets/tarjeta_servicios_widget.dart';
 import '../../../shared/widgets/estado_carga_datos_widget.dart';
+import 'detalle_servicio_screen.dart';
 
 class ServiciosScreen extends StatefulWidget {
   final Usuario usuario;
@@ -75,11 +76,11 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
                     return TarjetaServicio(
                       servicio: servicio,
                       onTap: () {
-                        // El paso a detalle se conectará en el Paso 23
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Seleccionaste: ${servicio.nombre}'),
-                            duration: const Duration(seconds: 1),
+                        Navigator.push<void>(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetalleServicioScreen(servicio: servicio),
                           ),
                         );
                       },
