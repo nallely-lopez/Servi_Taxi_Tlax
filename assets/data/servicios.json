@@ -2,7 +2,7 @@
   {
     "id": 1,
     "nombre": "Mototaxi",
-    "descripcion": "Vehículo ligero y económico para traslados rápidos en distancias cortas.",
+    "descripcion": "Transporte tradicional, económico y rápido para trayectos locales de corta distancia.",
     "imagen": "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=500&q=80",
     "capacidad": 3,
     "tarifaBase": 10.0,
