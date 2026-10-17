@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Transporte Local',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 43, 193, 196)),
         useMaterial3: true,
       ),
       home: const LoginScreen(),
