@@ -4,6 +4,7 @@ import '../../autenticacion/models/usuario_model.dart';
 import '../models/servicio_transporte_model.dart';
 import '../utils/lector_servicios_utils.dart';
 import '../widgets/tarjeta_servicios_widget.dart';
+import '../../../shared/widgets/estado_carga_datos_widget.dart';
 
 class ServiciosScreen extends StatefulWidget {
   final Usuario usuario;
@@ -47,19 +48,13 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
               future: _futureServicios,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const EstadoCargaDatos();
                 }
 
                 if (snapshot.hasError) {
-                  return Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
+                  return EstadoCargaDatos(
+                    mensajeError:
                         'Error al cargar el catálogo: ${snapshot.error}',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                    ),
                   );
                 }
 

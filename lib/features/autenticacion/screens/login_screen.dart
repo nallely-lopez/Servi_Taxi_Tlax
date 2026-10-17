@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
+import '../../../shared/widgets/boton_principal_widget.dart';
 import '../../servicios/screens/servicios_screen.dart';
 import '../models/usuario_model.dart';
 import '../utils/lector_usuarios_utils.dart';
+import '../widgets/campo_acceso_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -32,7 +35,6 @@ class _LoginScreenState extends State<LoginScreen> {
       _mensajeError = null;
     });
 
-    // Validación 1: Campos vacíos
     if (usuarioTexto.isEmpty || claveTexto.isEmpty) {
       setState(() {
         _mensajeError = 'Por favor ingresa usuario y contraseña.';
@@ -47,7 +49,6 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       final List<Usuario> usuarios = await LectorUsuarios.cargarUsuarios();
 
-      // Buscar coincidencia en usuarios.json
       final usuarioEncontrado = usuarios.cast<Usuario?>().firstWhere(
         (u) => u?.usuario == usuarioTexto && u?.claveAcceso == claveTexto,
         orElse: () => null,
@@ -102,23 +103,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 24),
-              TextField(
-                controller: _usuarioController,
-                decoration: const InputDecoration(
-                  labelText: 'Usuario',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.person),
-                ),
+              CampoAcceso(
+                etiqueta: 'Usuario',
+                controlador: _usuarioController,
+                icono: Icons.person,
               ),
               const SizedBox(height: 16),
-              TextField(
-                controller: _claveController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Contraseña',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.lock),
-                ),
+              CampoAcceso(
+                etiqueta: 'Contraseña',
+                controlador: _claveController,
+                icono: Icons.lock,
+                ocultarTexto: true,
               ),
               const SizedBox(height: 16),
               if (_mensajeError != null)
@@ -136,18 +131,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(color: Colors.red.shade900),
                   ),
                 ),
-              ElevatedButton(
-                onPressed: _cargando ? null : _iniciarSesion,
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                ),
-                child: _cargando
-                    ? const SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : const Text('Ingresar', style: TextStyle(fontSize: 16)),
+              BotonPrincipal(
+                texto: 'Ingresar',
+                onPressed: _iniciarSesion,
+                estaCargando: _cargando,
               ),
             ],
           ),
