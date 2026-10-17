@@ -29,7 +29,7 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Catálogo de Servicios'),
+        title: const Text('Catálogo de Servicios de Transporte'),
         centerTitle: true,
         actions: [
           IconButton(
