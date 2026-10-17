@@ -30,6 +30,7 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Servicios de Transporte'),
+
         centerTitle: true,
         actions: [
           IconButton(
