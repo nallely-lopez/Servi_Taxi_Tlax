@@ -14,6 +14,7 @@
    - Parámetros: `servicio` (ServicioTransporte), `onTap` (VoidCallback).
    - Uso: Catálogo de servicios (`ServiciosScreen`).
 5. **ComprobanteViaje** *(Pendiente para Paso 22)*.
+
 ## Componentes de Abelardo
 1. **CabeceraServicio** (`lib/features/servicios/widgets/cabecera_servicio.dart`):
    - Parámetros: `servicio` (ServicioTransporte).

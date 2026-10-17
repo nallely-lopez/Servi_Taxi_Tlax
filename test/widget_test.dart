@@ -7,7 +7,6 @@ void main() {
   ) async {
     await tester.pumpWidget(const MyApp());
 
-    // Verifica que aparezca el título y botón de ingreso
     expect(find.text('Iniciar Sesión'), findsOneWidget);
     expect(find.text('Ingresar'), findsOneWidget);
   });
