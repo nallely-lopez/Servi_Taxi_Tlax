@@ -90,7 +90,7 @@ class TarjetaServicio extends StatelessWidget {
                         ),
                         const Spacer(),
                         Text(
-                          'Base: \$${servicio.tarifaBase.toStringAsFixed(2)}',
+                          'Costo Base: \$${servicio.tarifaBase.toStringAsFixed(2)}',
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
