@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../shared/widgets/boton_principal_widget.dart';
 import '../models/servicio_transporte_model.dart';
-import '../widgets/cabecera_servicio_widgets.dart';
-import '../widgets/ficha_servicio_widgets.dart';
+import '../widgets/cabecera_servicio.dart';
+import '../widgets/ficha_servicio.dart';
+import '../../viajes/screens/seleccion_recorrido_screen.dart';
 
 class DetalleServicioScreen extends StatelessWidget {
   final ServicioTransporte servicio;
@@ -41,11 +42,11 @@ class DetalleServicioScreen extends StatelessWidget {
             BotonPrincipal(
               texto: 'Seleccionar Recorrido',
               onPressed: () {
-                // Se conectará formalmente con SeleccionRecorridoScreen en el Paso 20
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Continuar recorrido para: ${servicio.nombre}'),
-                    duration: const Duration(seconds: 1),
+                Navigator.push<void>(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        SeleccionRecorridoScreen(servicio: servicio),
                   ),
                 );
               },

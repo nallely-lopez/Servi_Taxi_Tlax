@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../shared/widgets/boton_principal_widget.dart';
 import '../../../shared/widgets/estado_carga_datos_widget.dart';
 import '../../servicios/models/servicio_transporte_model.dart';
@@ -8,18 +9,17 @@ import '../models/viaje.dart';
 import '../utils/calculadora_viaje_utils.dart';
 import '../utils/lector_lugares_utils.dart';
 import '../utils/lector_rutas_utils.dart';
-import '../widgets/selector_lugar_widget.dart';
+import '../widgets/selector_lugar.dart';
+import 'cotizacion_screen.dart';
 
 class SeleccionRecorridoScreen extends StatefulWidget {
   final ServicioTransporte servicio;
 
-  const SeleccionRecorridoScreen({
-    super.key,
-    required this.servicio,
-  });
+  const SeleccionRecorridoScreen({super.key, required this.servicio});
 
   @override
-  State<SeleccionRecorridoScreen> createState() => _SeleccionRecorridoScreenState();
+  State<SeleccionRecorridoScreen> createState() =>
+      _SeleccionRecorridoScreenState();
 }
 
 class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
@@ -38,50 +38,36 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
   }
 
   void _validarYContinuar(List<Ruta> rutas) {
-    setState(() {
-      _mensajeError = null;
-    });
-
-    // Validación 1: Selección incompleta
     if (_origenSeleccionado == null || _destinoSeleccionado == null) {
-      setState(() {
-        _mensajeError = 'Por favor selecciona el lugar de origen y de destino.';
-      });
+      _mostrarError('Por favor selecciona el lugar de origen y de destino.');
       return;
     }
 
-    // Validación 2: Origen igual a destino
     if (_origenSeleccionado!.id == _destinoSeleccionado!.id) {
-      setState(() {
-        _mensajeError = 'El origen y el destino no pueden ser el mismo lugar.';
-      });
+      _mostrarError('El origen y el destino no pueden ser el mismo lugar.');
       return;
     }
 
-    // Validación 3: Ruta inexistente entre origen y destino
-    final rutaEncontrada = rutas.cast<Ruta?>().firstWhere(
-      (r) =>
-          r?.origenId == _origenSeleccionado!.id &&
-          r?.destinoId == _destinoSeleccionado!.id,
-      orElse: () => null,
-    );
-
+    final rutaEncontrada = rutas
+        .where(
+          (ruta) =>
+              ruta.origenId == _origenSeleccionado!.id &&
+              ruta.destinoId == _destinoSeleccionado!.id,
+        )
+        .firstOrNull;
     if (rutaEncontrada == null) {
-      setState(() {
-        _mensajeError =
-            'Ruta no disponible: no hay trayecto registrado entre los puntos seleccionados.';
-      });
+      _mostrarError(
+        'Ruta no disponible: no hay trayecto registrado entre los puntos seleccionados.',
+      );
       return;
     }
 
-    // Cálculo del costo estimado fuera del build
     final costo = CalculadoraViaje.calcularCosto(
       tarifaBase: widget.servicio.tarifaBase,
       distanciaKm: rutaEncontrada.distanciaKm,
       precioKm: widget.servicio.precioKm,
     );
 
-    // Instancia en memoria de Viaje
     final viaje = Viaje(
       servicio: widget.servicio,
       origen: _origenSeleccionado!,
@@ -90,15 +76,19 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
       costoEstimado: costo,
     );
 
-    // El enlace definitivo con CotizacionScreen se consolidará en el Paso 21
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'Recorrido validado (${rutaEncontrada.distanciaKm} km) - Total: \$${viaje.costoEstimado.toStringAsFixed(2)}',
-        ),
-        backgroundColor: Colors.green,
-      ),
+    setState(() {
+      _mensajeError = null;
+    });
+    Navigator.push<void>(
+      context,
+      MaterialPageRoute(builder: (context) => CotizacionScreen(viaje: viaje)),
     );
+  }
+
+  void _mostrarError(String mensaje) {
+    setState(() {
+      _mensajeError = mensaje;
+    });
   }
 
   @override
@@ -108,8 +98,8 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
         title: const Text('Seleccionar Recorrido'),
         centerTitle: true,
       ),
-      body: FutureBuilder<List<dynamic>>(
-        future: Future.wait([_futureLugares, _futureRutas]),
+      body: FutureBuilder<List<Object>>(
+        future: Future.wait<Object>([_futureLugares, _futureRutas]),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const EstadoCargaDatos();
@@ -117,15 +107,23 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
 
           if (snapshot.hasError) {
             return EstadoCargaDatos(
-              mensajeError: 'Error al cargar lugares o rutas: ${snapshot.error}',
+              mensajeError:
+                  'Error al cargar lugares o rutas: ${snapshot.error}',
             );
           }
 
-          final lugares = (snapshot.data?[0] as List<Lugar>?) ?? [];
-          final rutas = (snapshot.data?[1] as List<Ruta>?) ?? [];
+          final datos = snapshot.data;
+          if (datos == null || datos.length != 2) {
+            return const EstadoCargaDatos(
+              mensajeError: 'No se recibieron los datos de lugares y rutas.',
+            );
+          }
+
+          final lugares = datos[0] as List<Lugar>;
+          final rutas = datos[1] as List<Ruta>;
 
           return SingleChildScrollView(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -135,11 +133,13 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: const EdgeInsets.all(12),
                     child: Row(
                       children: [
-                        const Icon(Icons.info_outline, color: Colors.blueAccent),
-                        const SizedBox(width: 10),
+                        const Icon(
+                          Icons.info_outline,
+                          color: Colors.blueAccent,
+                        ),
                         Expanded(
                           child: Text(
                             'Servicio seleccionado: ${widget.servicio.nombre}',
@@ -158,6 +158,7 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
                   onChanged: (Lugar? nuevoOrigen) {
                     setState(() {
                       _origenSeleccionado = nuevoOrigen;
+                      _mensajeError = null;
                     });
                   },
                 ),
@@ -169,6 +170,7 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
                   onChanged: (Lugar? nuevoDestino) {
                     setState(() {
                       _destinoSeleccionado = nuevoDestino;
+                      _mensajeError = null;
                     });
                   },
                 ),
