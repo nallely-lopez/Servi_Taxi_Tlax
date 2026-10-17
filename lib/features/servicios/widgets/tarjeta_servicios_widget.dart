@@ -91,6 +91,7 @@ class TarjetaServicio extends StatelessWidget {
                         const Spacer(),
                         Text(
                           'Tarifa Inicial: \$${servicio.tarifaBase.toStringAsFixed(2)}',
+
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
