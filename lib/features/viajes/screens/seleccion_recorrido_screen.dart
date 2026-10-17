@@ -39,6 +39,7 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
 
   Future<void> _validarYContinuar(List<Ruta> rutas) async {
     final context = this.context;
+
     // Validación 2: Origen igual a destino
     if (_origenSeleccionado!.id == _destinoSeleccionado!.id) {
       setState(() {
