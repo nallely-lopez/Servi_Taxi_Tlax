@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'features/autenticacion/screens/login_screen.dart';
 
 void main() {
@@ -14,7 +15,9 @@ class MyApp extends StatelessWidget {
       title: 'Transporte Local',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 109, 54, 177),
+        ),
         useMaterial3: true,
       ),
       home: const LoginScreen(),
