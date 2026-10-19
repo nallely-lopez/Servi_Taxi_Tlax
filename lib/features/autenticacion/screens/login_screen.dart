@@ -61,12 +61,18 @@ class _LoginScreenState extends State<LoginScreen> {
       });
 
       if (usuarioEncontrado != null) {
-        Navigator.push(
+        await Navigator.push<void>(
           context,
           MaterialPageRoute(
             builder: (context) => ServiciosScreen(usuario: usuarioEncontrado),
           ),
         );
+        if (!mounted) return;
+        _usuarioController.clear();
+        _claveController.clear();
+        setState(() {
+          _mensajeError = null;
+        });
       } else {
         setState(() {
           _mensajeError = 'Usuario o contraseña incorrectos.';

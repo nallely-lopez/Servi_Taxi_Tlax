@@ -84,7 +84,7 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
                     return TarjetaServicio(
                       servicio: servicio,
                       onTap: () {
-                        Navigator.push<void>(
+                        Navigator.push<bool>(
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
