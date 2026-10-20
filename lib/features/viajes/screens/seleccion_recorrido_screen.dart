@@ -23,8 +23,7 @@ class SeleccionRecorridoScreen extends StatefulWidget {
 }
 
 class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
-  late Future<List<Lugar>> _futureLugares;
-  late Future<List<Ruta>> _futureRutas;
+  late final Future<List<Object>> _futureDatos;
 
   Lugar? _origenSeleccionado;
   Lugar? _destinoSeleccionado;
@@ -33,32 +32,31 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
   @override
   void initState() {
     super.initState();
-    _futureLugares = LectorLugaresUtils.cargarLugares();
-    _futureRutas = LectorRutas.cargarRutas();
+    _futureDatos = Future.wait<Object>([
+      LectorLugaresUtils.cargarLugares(),
+      LectorRutas.cargarRutas(),
+    ]);
   }
 
   Future<void> _validarYContinuar(List<Ruta> rutas) async {
     final context = this.context;
 
-    // Validación 2: Origen igual a destino
-    if (_origenSeleccionado!.id == _destinoSeleccionado!.id) {
-      setState(() {
-        _mensajeError =
-            'Atención: El punto de salida y de llegada no pueden coincidir.';
-      });
+    final origen = _origenSeleccionado;
+    final destino = _destinoSeleccionado;
+
+    if (origen == null || destino == null) {
+      _mostrarError('Selecciona el origen y el destino antes de cotizar.');
       return;
     }
 
-    if (_origenSeleccionado!.id == _destinoSeleccionado!.id) {
+    if (origen.id == destino.id) {
       _mostrarError('El origen y el destino no pueden ser el mismo lugar.');
       return;
     }
 
     final rutaEncontrada = rutas
         .where(
-          (ruta) =>
-              ruta.origenId == _origenSeleccionado!.id &&
-              ruta.destinoId == _destinoSeleccionado!.id,
+          (ruta) => ruta.origenId == origen.id && ruta.destinoId == destino.id,
         )
         .firstOrNull;
     if (rutaEncontrada == null) {
@@ -76,8 +74,8 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
 
     final viaje = Viaje(
       servicio: widget.servicio,
-      origen: _origenSeleccionado!,
-      destino: _destinoSeleccionado!,
+      origen: origen,
+      destino: destino,
       ruta: rutaEncontrada,
       costoEstimado: costo,
     );
@@ -107,7 +105,7 @@ class _SeleccionRecorridoScreenState extends State<SeleccionRecorridoScreen> {
         centerTitle: true,
       ),
       body: FutureBuilder<List<Object>>(
-        future: Future.wait<Object>([_futureLugares, _futureRutas]),
+        future: _futureDatos,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const EstadoCargaDatos();
