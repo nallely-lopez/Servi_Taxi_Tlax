@@ -1,14 +1,52 @@
 [
   {
     "id": 1,
-    "nombre": "Lizeth Nallely",
+    "nombreCompleto": "Lizeth Nallely López García",
+    "nombreCorto": "Nallely",
     "usuario": "nallely",
-    "claveAcceso": "demo123"
+    "correo": "nallely@servitlax.mx",
+    "claveAcceso": "demo123",
+    "rol": "pasajero",
+    "calificacion": 4.9
   },
   {
     "id": 2,
-    "nombre": "Abelardo",
+    "nombreCompleto": "Abelardo Ortiz",
+    "nombreCorto": "Abelardo",
     "usuario": "abelardo",
-    "claveAcceso": "demo456"
+    "correo": "abelardo@servitlax.mx",
+    "claveAcceso": "demo456",
+    "rol": "conductor",
+    "calificacion": 4.8
+  },
+  {
+    "id": 3,
+    "nombreCompleto": "María Cruz Sánchez",
+    "nombreCorto": "María",
+    "usuario": "maria",
+    "correo": "maria@servitlax.mx",
+    "claveAcceso": "demo789",
+    "rol": "pasajero",
+    "calificacion": 4.7
+  },
+  {
+    "id": 4,
+    "nombreCompleto": "Jorge Ramírez",
+    "nombreCorto": "Jorge",
+    "usuario": "jorge",
+    "correo": "jorge@servitlax.mx",
+    "claveAcceso": "demo000",
+    "rol": "pasajero",
+    "calificacion": 4.9
+  },
+  {
+    "id": 5,
+    "nombreCompleto": "Rosa Hernández",
+    "nombreCorto": "Rosa",
+    "usuario": "rosa",
+    "correo": "rosa@servitlax.mx",
+    "claveAcceso": "demo111",
+    "rol": "pasajero",
+    "calificacion": 5.0
   }
 ]
