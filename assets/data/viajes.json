@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1042, "pasajeroId": 1, "pasajeroNombre": "Lizeth Nallely López García",
+    "conductorId": null, "conductorNombre": null,
+    "servicioId": 1, "servicioNombre": "Mototaxi",
+    "origen": "Tlaxiaco", "destino": "Magdalena",
+    "distanciaKm": 3.5, "minutos": 11, "total": 27.50,
+    "estado": "pendiente", "fecha": "2026-11-22T09:20:00"
+  },
+  {
+    "id": 1043, "pasajeroId": 3, "pasajeroNombre": "María Cruz Sánchez",
+    "conductorId": null, "conductorNombre": null,
+    "servicioId": 3, "servicioNombre": "Taxi Rápido",
+    "origen": "Tlaxiaco", "destino": "Hospital San Pedro",
+    "distanciaKm": 5.2, "minutos": 15, "total": 66.80,
+    "estado": "pendiente", "fecha": "2026-11-22T09:26:00"
+  },
+  {
+    "id": 1044, "pasajeroId": 4, "pasajeroNombre": "Jorge Ramírez",
+    "conductorId": null, "conductorNombre": null,
+    "servicioId": 2, "servicioNombre": "Moto Rápido",
+    "origen": "Tlaxiaco", "destino": "Tecnológico de Tlaxiaco",
+    "distanciaKm": 1.8, "minutos": 7, "total": 23.70,
+    "estado": "pendiente", "fecha": "2026-11-22T09:31:00"
+  },
+  {
+    "id": 1040, "pasajeroId": 1, "pasajeroNombre": "Lizeth Nallely López García",
+    "conductorId": 2, "conductorNombre": "Abelardo Ortiz",
+    "servicioId": 1, "servicioNombre": "Mototaxi",
+    "origen": "Tlaxiaco", "destino": "Tecnológico de Tlaxiaco",
+    "distanciaKm": 1.8, "minutos": 7, "total": 19.00,
+    "estado": "aceptado", "fecha": "2026-11-22T08:50:00"
+  },
+  {
+    "id": 1038, "pasajeroId": 5, "pasajeroNombre": "Rosa Hernández",
+    "conductorId": 2, "conductorNombre": "Abelardo Ortiz",
+    "servicioId": 1, "servicioNombre": "Mototaxi",
+    "origen": "Tlaxiaco", "destino": "Tecnológico de Tlaxiaco",
+    "distanciaKm": 1.8, "minutos": 7, "total": 19.00,
+    "estado": "completado", "fecha": "2026-11-22T08:05:00"
+  },
+  {
+    "id": 1021, "pasajeroId": 1, "pasajeroNombre": "Lizeth Nallely López García",
+    "conductorId": 2, "conductorNombre": "Abelardo Ortiz",
+    "servicioId": 3, "servicioNombre": "Taxi Rápido",
+    "origen": "Tlaxiaco", "destino": "Tecnológico de Tlaxiaco",
+    "distanciaKm": 1.8, "minutos": 7, "total": 36.20,
+    "estado": "completado", "fecha": "2026-11-16T07:40:00"
+  },
+  {
+    "id": 1009, "pasajeroId": 1, "pasajeroNombre": "Lizeth Nallely López García",
+    "conductorId": 2, "conductorNombre": "Abelardo Ortiz",
+    "servicioId": 1, "servicioNombre": "Mototaxi",
+    "origen": "Magdalena", "destino": "Tlaxiaco",
+    "distanciaKm": 3.5, "minutos": 11, "total": 27.50,
+    "estado": "completado", "fecha": "2026-11-13T18:12:00"
+  }
+]

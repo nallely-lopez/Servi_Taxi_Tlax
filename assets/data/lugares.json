@@ -1,22 +1,7 @@
 [
-  {
-    "id": 1,
-    "nombre": "Tlaxiaco"
-  },
-  {
-    "id": 2,
-    "nombre": "Magdalena"
-  },
-  {
-    "id": 3,
-    "nombre": "Tecnologico de tlaxiaco"
-  },
-  {
-    "id": 4,
-    "nombre": "Hospital San Pedro"
-  },
-  {
-    "id": 5,
-    "nombre": "Boqueron"
-  }
+  { "id": 1, "nombre": "Tlaxiaco", "descripcion": "Centro de Tlaxiaco" },
+  { "id": 2, "nombre": "Magdalena", "descripcion": "Barrio de Magdalena" },
+  { "id": 3, "nombre": "Tecnológico de Tlaxiaco", "descripcion": "Av. Tecnológico" },
+  { "id": 4, "nombre": "Hospital San Pedro", "descripcion": "Urgencias 24 h" },
+  { "id": 5, "nombre": "Boquerón", "descripcion": "Barrio de Boquerón" }
 ]

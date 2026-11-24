@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'features/autenticacion/screens/login_screen.dart';
-
+/// VERSIÓN TEMPORAL (Paso 21). Solo comprueba que el proyecto compila con la
+/// nueva estructura. En el Paso 22 se agrega el tema y en el 24 la navegación.
 void main() {
   runApp(const MyApp());
 }
@@ -11,16 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Transporte Local',
+    return const MaterialApp(
+      title: 'ServiTlax',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 43, 193, 196),
-        ),
-        useMaterial3: true,
-      ),
-      home: const LoginScreen(),
+      home: Scaffold(body: Center(child: Text('ServiTlax: estructura lista'))),
     );
   }
 }
