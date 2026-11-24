@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
 import 'core/core.dart';
+import 'core/navigation/app_router.dart';
 
-/// VERSIÓN TEMPORAL (Paso 22). Ya usa el tema claro y oscuro.
-/// En el Paso 24 se reemplaza por la versión final con navegación.
 void main() {
   runApp(const MyApp());
 }
 
+/// Raíz de la app. Se llama MyApp porque test/widget_test.dart la usa con ese nombre.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Escucha temaActual: cuando el usuario cambia la Apariencia en Perfil,
+    // este builder se vuelve a ejecutar y MaterialApp aplica el nuevo modo.
     return ValueListenableBuilder<ThemeMode>(
       valueListenable: temaActual,
       builder: (context, modo, _) => MaterialApp(
@@ -21,16 +23,8 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.claro,
         darkTheme: AppTheme.oscuro,
         themeMode: modo,
-        home: Scaffold(
-          body: Center(
-            child: Builder(
-              builder: (context) => FilledButton(
-                onPressed: () {},
-                child: const Text('Botón con el tema de ServiTlax'),
-              ),
-            ),
-          ),
-        ),
+        initialRoute: Rutas.splash,
+        onGenerateRoute: AppRouter.generarRuta,
       ),
     );
   }

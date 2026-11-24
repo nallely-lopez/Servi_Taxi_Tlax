@@ -11,3 +11,7 @@ export 'models/ruta_model.dart';
 export 'models/viaje_model.dart';
 export 'repositories/lugares_repository.dart';
 export 'repositories/viajes_repository.dart';
+export 'screens/confirmacion_screen.dart';
+export 'screens/cotizacion_screen.dart';
+export 'screens/mis_viajes_screen.dart';
+export 'screens/seleccion_recorrido_screen.dart';

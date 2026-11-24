@@ -11,6 +11,7 @@ export 'estado_carga_datos_widget.dart';
 export 'estado_vacio_widget.dart';
 export 'icono_servicio_widget.dart';
 export 'mapa_recorrido_widget.dart';
+export 'pantalla_en_construccion_widget.dart';
 export 'ruta_origen_destino_widget.dart';
 export 'servi_app_bar_widget.dart';
 export 'tarjeta_viaje_widget.dart';

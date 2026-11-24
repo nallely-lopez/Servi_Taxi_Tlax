@@ -7,3 +7,5 @@ library;
 
 export 'models/servicio_transporte_model.dart';
 export 'repositories/servicios_repository.dart';
+export 'screens/detalle_servicio_screen.dart';
+export 'screens/inicio_screen.dart';

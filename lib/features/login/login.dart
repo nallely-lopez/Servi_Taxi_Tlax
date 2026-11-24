@@ -7,3 +7,6 @@ library;
 
 export 'models/usuario_model.dart';
 export 'repositories/sesion_repository.dart';
+export 'screens/login_screen.dart';
+export 'screens/registro_screen.dart';
+export 'screens/splash_screen.dart';
