@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// VERSIÓN TEMPORAL (Paso 21). Solo comprueba que el proyecto compila con la
-/// nueva estructura. En el Paso 22 se agrega el tema y en el 24 la navegación.
+import 'core/core.dart';
+
+/// VERSIÓN TEMPORAL (Paso 22). Ya usa el tema claro y oscuro.
+/// En el Paso 24 se reemplaza por la versión final con navegación.
 void main() {
   runApp(const MyApp());
 }
@@ -11,10 +13,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'ServiTlax',
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(body: Center(child: Text('ServiTlax: estructura lista'))),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: temaActual,
+      builder: (context, modo, _) => MaterialApp(
+        title: 'ServiTlax',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.claro,
+        darkTheme: AppTheme.oscuro,
+        themeMode: modo,
+        home: Scaffold(
+          body: Center(
+            child: Builder(
+              builder: (context) => FilledButton(
+                onPressed: () {},
+                child: const Text('Botón con el tema de ServiTlax'),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
