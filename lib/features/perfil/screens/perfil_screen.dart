@@ -20,9 +20,9 @@ class PerfilScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final tema = Theme.of(context);
     final usuario = SesionRepository.instancia.usuarioActual.value;
-    if (usuario == null)
+    if (usuario == null) {
       return const SizedBox.shrink(); // Sin sesión no hay perfil
-
+    }
     final esConductor = usuario.rol == Rol.conductor;
     final oscuro = tema.brightness == Brightness.dark;
 
